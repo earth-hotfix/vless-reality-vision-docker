@@ -1,0 +1,19 @@
+services:
+  xray-client:
+    build: .
+    container_name: xray-client
+    restart: always
+    ports:
+      - "127.0.0.1:${SOCKS_PORT:-1080}:${SOCKS_PORT:-1080}/tcp"
+    env_file: .env
+    healthcheck:
+      test: ["CMD-SHELL", "xray version > /dev/null 2>&1 || exit 1"]
+      interval: 30s
+      timeout: 5s
+      retries: 3
+      start_period: 10s
+    logging:
+      driver: "json-file"
+      options:
+        max-size: "10m"
+        max-file: "3"

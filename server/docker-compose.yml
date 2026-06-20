@@ -1,0 +1,21 @@
+services:
+  xray-server:
+    build: .
+    container_name: xray-server
+    restart: always
+    ports:
+      - "${XRAY_PORT:-443}:${XRAY_PORT:-443}/tcp"
+    env_file: .env
+    volumes:
+      - ./logs:/var/log/xray
+    healthcheck:
+      test: ["CMD-SHELL", "xray version > /dev/null 2>&1 || exit 1"]
+      interval: 30s
+      timeout: 5s
+      retries: 3
+      start_period: 10s
+    logging:
+      driver: "json-file"
+      options:
+        max-size: "10m"
+        max-file: "3"
