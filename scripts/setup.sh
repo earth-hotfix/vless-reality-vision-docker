@@ -33,7 +33,7 @@ info "UUID: $UUID"
 
 # --- generate Reality keypair ---
 info "Generating Reality x25519 keypair..."
-KEYPAIR=$(docker run --rm ghcr.io/xtls/xray-core:latest xray x25519 2>/dev/null)
+KEYPAIR=$(docker run --rm ghcr.io/xtls/xray-core:latest xray x25519)
 PRIVATE_KEY=$(echo "$KEYPAIR" | grep "Private key:" | awk '{print $3}')
 PUBLIC_KEY=$(echo "$KEYPAIR"  | grep "Public key:"  | awk '{print $3}')
 [ -n "$PRIVATE_KEY" ] || die "Failed to extract private key"

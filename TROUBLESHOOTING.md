@@ -63,7 +63,7 @@ grep -E '^(SERVER_IP|SERVER_PORT|UUID|SNI_DOMAIN|REALITY_PUBLIC_KEY|REALITY_SHOR
 ## Reality TLS handshake fails
 
 - Ensure the SNI domain supports **TLS 1.3** (most modern CDN sites do).
-- Ensure the VPS can reach `${SNI_DOMAIN}:443` (not blocked by the VPS firewall or ISP).
+- Ensure the VPS can reach `www.microsoft.com:443` on port 443 (not blocked by the VPS firewall or ISP).
 - Try a different SNI domain: `www.amazon.com`, `addons.mozilla.org`.
 
 ---
